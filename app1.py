@@ -83,7 +83,7 @@ def classify_utterance(text):
 
     def sentiment_analysis(text):
    
-         text = clean(text)
+        text = clean(text)
         sentiment = get_sentiment(text)
     
         if sentiment == 'Positive':
