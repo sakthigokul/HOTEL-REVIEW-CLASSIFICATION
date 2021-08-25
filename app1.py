@@ -5,7 +5,6 @@ import streamlit as st
 import nltk
 from nltk.tokenize.toktok import ToktokTokenizer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-sia = SentimentIntensityAnalyzer()
 #app=Flask(__name__)
 #Swagger(app)
 
@@ -55,7 +54,7 @@ def classify_utterance(text):
   
         pos_polarity = dict()
         for word in nltk.word_tokenize(text):
-            pos_score = sia.polarity_scores(word)['pos']
+            pos_score = SentimentIntensityAnalyzer().polarity_scores(word)['pos']
             if word not in pos_polarity:
                 pos_polarity[word] = pos_score
             else:
@@ -70,7 +69,7 @@ def classify_utterance(text):
   
         neg_polarity = dict()
         for word in nltk.word_tokenize(text):
-            neg_score = sia.polarity_scores(word)['neg']
+            neg_score = SentimentIntensityAnalyzer().polarity_scores(word)['neg']
             if word not in neg_polarity:
                 neg_polarity[word] = neg_score
             else:
