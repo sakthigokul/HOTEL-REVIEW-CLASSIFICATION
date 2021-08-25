@@ -20,10 +20,10 @@ def welcome():
 
 #@app.route('/predict',methods=["Get"])
 def classify_utterance(text):
-    tfidf = pickle.load(open('C:\\Users\\smile\\Desktop\\PROJECT\\HOTEL RATING CLASSIFICATION\\V\\tfidf.pickle', 'rb'))
+    tfidf = pickle.load(open('tfidf.pickle', 'rb'))
 
     # load the model
-    model = pickle.load(open('C:\\Users\\smile\\Desktop\\PROJECT\\HOTEL RATING CLASSIFICATION\\V\\linear_classifier.pickle', 'rb'))
+    model = pickle.load(open('linear_classifier.pickle', 'rb'))
     
     sentiment_map = {'Negative':0, 'Positive':1, 'Compliant':2}
     def get_name(sentiment_id):
