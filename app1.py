@@ -5,10 +5,6 @@ import streamlit as st
 import nltk
 from nltk.tokenize.toktok import ToktokTokenizer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-
-from cleantext import clean
-from sklearn.feature_extraction.text import CountVectorizer
-count_vect = CountVectorizer()
 sia = SentimentIntensityAnalyzer()
 #app=Flask(__name__)
 #Swagger(app)
