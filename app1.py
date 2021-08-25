@@ -3,6 +3,8 @@ import pickle
 #from flasgger import Swagger
 import streamlit as st 
 import nltk
+import nltk
+nltk.download('all')
 from nltk.tokenize.toktok import ToktokTokenizer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from cleantext import clean
