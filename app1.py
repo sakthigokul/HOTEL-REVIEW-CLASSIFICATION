@@ -7,7 +7,9 @@ import nltk
 nltk.download('all')
 from nltk.tokenize.toktok import ToktokTokenizer
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from cleantext import clean
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+import re
 #app=Flask(__name__)
 #Swagger(app)
 
@@ -23,7 +25,17 @@ def classify_utterance(text):
     # load the model
     model = pickle.load(open('linear_classifier.pickle', 'rb'))
     
-    sentiment_map = {'Negative':0, 'Positive':1, 'Compliant':2}
+    sentiment_map = {'Negative':-1, 'Positive':1, 'Neutral': 0}
+    
+    def clean_text(text):
+        print("Number of words in Review:", len(text.split()))
+        text = re.sub('[^A-za-z0-9]', ' ', text)
+        text = text.lower()
+        text = text.split(' ')
+        text = [WordNetLemmatizer().lemmatize(word) for word in text if word not in (stopwords.words('english'))]
+        text = ' '.join(text)
+
+        return text
     def get_name(sentiment_id):
   
             for sentiment, id_ in sentiment_map.items():
@@ -83,7 +95,7 @@ def classify_utterance(text):
 
     def sentiment_analysis(text):
    
-        text = clean(text)
+        text = clean_text(text)
         sentiment = get_sentiment(text)
     
         if sentiment == 'Positive':
